@@ -1,12 +1,4 @@
 defmodule Aoc.Year2025.Day01 do
-  @moduledoc """
-  Day 1: [Secret Entrance]
-  https://adventofcode.com/2025/day/1
-  """
-
-  @doc """
-  Solves part 1 of the puzzle.
-  """
   def part1(input) do
     input
     |> parse()
@@ -25,7 +17,6 @@ defmodule Aoc.Year2025.Day01 do
   defp parse(input) do
     input
     |> String.trim()
-    |> String.split("\n")
   end
 
   defp solve_part1(data) do
@@ -38,11 +29,23 @@ defmodule Aoc.Year2025.Day01 do
     data
   end
 
-  @doc """
-  Runs both parts with the actual input for this day.
-  """
+  def get_test_data do
+    path = Path.join(__DIR__, "day01-test.txt")
+
+    case File.read(path) do
+      {:ok, contents} ->
+        contents
+
+      {:error, reason} ->
+        IO.puts("Could not read file: #{:file.format_error(reason)}")
+        nil
+    end
+  end
+
   def run do
-    input = Aoc.InputFetcher.get_input(2025, 1)
+    # input = Aoc.InputFetcher.get_input(2025, 1)
+
+    input = get_test_data()
 
     IO.puts("Day 1 - Part 1: #{part1(input)}")
     IO.puts("Day 1 - Part 2: #{part2(input)}")

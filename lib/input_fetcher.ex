@@ -16,9 +16,6 @@ defmodule Aoc.InputFetcher do
 
   @base_url "https://adventofcode.com"
 
-  # Load .env file if it exists
-  Dotenvy.source!([".env", System.get_env()])
-
   @doc """
   Fetches the input for a given day and year, saving it to a file.
   
@@ -83,7 +80,17 @@ defmodule Aoc.InputFetcher do
   end
 
   defp get_session_cookie do
-    System.get_env("AOC_SESSION")
+    # Load .env file at runtime if it exists
+    env = if File.exists?(".env") do
+      case Dotenvy.source([".env", System.get_env()]) do
+        {:ok, env_map} -> env_map
+        _ -> System.get_env()
+      end
+    else
+      System.get_env()
+    end
+    
+    Map.get(env, "AOC_SESSION")
   end
 
   defp input_path(year, day) do

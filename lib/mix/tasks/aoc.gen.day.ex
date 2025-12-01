@@ -78,6 +78,19 @@ defmodule Mix.Tasks.Aoc.Gen.Day do
         data
       end
 
+      def get_test_data do
+        path = Path.join(__DIR__, "day#{day_padded}-test.txt")
+
+        case File.read(path) do
+          {:ok, contents} ->
+            contents
+
+          {:error, reason} ->
+            IO.puts("Could not read file: \#{:file.format_error(reason)}")
+            nil
+        end
+      end
+
       @doc \"\"\"
       Runs both parts with the actual input for this day.
       \"\"\"

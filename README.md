@@ -68,14 +68,8 @@ lib/
     ...
   2024/
     day01.ex          # Previous year's solutions
+    day01.txt         # Cached inputs
     ...
   input_fetcher.ex    # Input fetching module
   aoc.ex              # Main module
-inputs/
-  2025/
-    day01.txt         # Cached inputs
-    day02.txt
-  2024/
-    day01.txt
 ```
-
